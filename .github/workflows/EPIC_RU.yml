@@ -21,6 +21,8 @@ jobs:
           path: workdir
 
       # 在 'Settings' - 'Secrets' 添加 EMAIL (你的 Epic 邮箱)，PASSWD (你的 Epic 密码)，SECRET（二步验证 Secret）
+      - name: Fix Epicgames Client Bug
+        run: mkdir -p .egstore
       - name: Get Gifts
         run: |
           cd workdir
