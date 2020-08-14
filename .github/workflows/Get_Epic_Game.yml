@@ -2,7 +2,7 @@ name: Get Epic Game
 
 on:
   watch: # 删除本行开头的 # 号
-    types: started #删除本行开头的 # 号，点击 Star 按钮可以手动触发 Actions
+    types: started # 删除本行开头的 # 号，点击 Star 按钮可以手动触发 Actions
   schedule:
    - cron: "25 0 * * *"
   push:
@@ -19,18 +19,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: Revadike/epicgames-freebies-claimer
-          #ref: '593cc8f73f6cc6bf013abd1c477bf6158dd38445'
+          ref: 'e3e1e572675bc8333c43d32cf716199f7911bde3'
           path: workdir
 
       # 在 'Settings' - 'Secrets' 添加 EMAIL (你的 Epic 邮箱)，PASSWD (你的 Epic 密码)，SECRET（二步验证 Secret）
-
-
       - name: Get Gifts
         run: |
           cd workdir
-          mkdir -p .egstore
+          mkdir .egstore
           npm install
           node claimer '${{ secrets.EMAIL }}' '${{ secrets.PASSWD }}' 0 '${{ secrets.SECRET }}' # > games.info
+          cat games.info
 
 #       - name: Edit Games.info
 #         if: always()
